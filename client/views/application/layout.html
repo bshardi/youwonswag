@@ -1,6 +1,11 @@
 <template name="layout">
-  {{>header}}
-  <div id="yield-Container" class="container">
-    {{yield}}
+  <div id="wrap">  	
+	  <div class="container">
+	    {{> header}}
+	    <div id="yield">
+	   	    {{yield}}
+	    </div>
+	  </div>
+	  <div id="push"></div>
   </div>
 </template>

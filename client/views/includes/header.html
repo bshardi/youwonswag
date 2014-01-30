@@ -12,8 +12,8 @@
           <ul class="nav">
             <li><a href="{{pathFor 'about'}}">About</a></li>
             {{#if currentUser}}
-            <li><a href="#about">Meetings</a></li>
-            <li><a href="#contact">Join Meeting</a></li>
+            <li><a href="{{pathFor 'meetingsList'}}">Meetings</a></li>
+            <li><a href="{{pathFor 'meetingsJoin'}}">Join Meeting</a></li>
             {{/if}}
           </ul>
           <ul class="nav pull-right">

@@ -1,0 +1,8 @@
+<template name="meetingsList">
+  <a href="{{pathFor 'createMeeting'}}" class="btn">Create Meeting</a>
+  <div class="meetings">
+    {{#each meetings}}
+      {{> meetingItem}}
+    {{/each}}
+  </div>
+</template>

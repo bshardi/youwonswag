@@ -9,3 +9,5 @@ iron-router
 accounts-password
 bootstrap
 accounts-ui-bootstrap-dropdown
+spin
+iron-router-progress
