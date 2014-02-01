@@ -12,4 +12,8 @@ Meteor.publish("singleMeeting", function(id){
 
 Meteor.publish("attendees", function(meetingId) {
 	return Attendees.find({meetingId: meetingId});
-})
+});
+
+Meteor.publish("meetingsJoined", function() {
+	return Attendees.find({userId: this.userId});
+});
