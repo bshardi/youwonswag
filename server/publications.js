@@ -9,3 +9,7 @@ Meteor.publish("openMeetings", function() {
 Meteor.publish("singleMeeting", function(id){
 	return id && Meetings.find(id);
 });
+
+Meteor.publish("attendees", function(meetingId) {
+	return Attendees.find({meetingId: meetingId});
+})

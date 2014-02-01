@@ -1,9 +1,16 @@
-<template name="meetingItem">
+<template name="meetingPage">
 	<div class="meeting">
 		<div class="meeting-content">
-			<h4><a href="{{pathFor 'meetingPage'}}">{{name}}</a> <small>{{meetingCode}}</small></h4>
+			<h4>{{name}} <small>{{meetingCode}}</small></h4>
 			<span class="span2"> Attendees: {{attendeeCount}}</span>
 			<a href="#" class="open-meeting btn btn-mini">{{openMeetingText}}</a>
 		</div>
+	</div>
+	<div class="attendees">
+		{{#each attendees}}
+		<div class="attendee">
+			{{userName}} {{email}}
+		</div>
+		{{/each}}
 	</div>
 </template>
