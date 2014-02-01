@@ -13,6 +13,6 @@ Template.meetingItem.helpers({
 Template.meetingItem.events({
 	"click .open-meeting": function(e){
 		e.preventDefault();
-		Meteor.call("toggleMeetingOpen", this._id);
+		Meteor.call("toggleMeetingOpen", this._id, this.open);
 	}
 });

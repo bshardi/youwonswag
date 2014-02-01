@@ -49,7 +49,7 @@ Meteor.methods({
 
     return meetingId;
   },
-  toggleMeetingOpen: function(meetingId){
+  toggleMeetingOpen: function(meetingId, currentState){
     var user = Meteor.user();
     //ensure the user is logged in
     if (!user) throw new Meteor.Error(401, "You need to login to upvote");
@@ -57,7 +57,7 @@ Meteor.methods({
     Meetings.update({
       _id: meetingId,
     }, {
-      $set: {open: !this.open}
+      $set: {open: !currentState}
     });
   
   }
