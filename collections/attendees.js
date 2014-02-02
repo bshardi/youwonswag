@@ -1,5 +1,10 @@
 Attendees = new Meteor.Collection("attendees");
 
+Attendees.allow({
+  update: ownsDocument,
+  remove: ownsDocument
+});
+
 Meteor.methods({
 	joinMeeting: function(meetingId) {
 		var user = Meteor.user();
@@ -7,7 +12,7 @@ Meteor.methods({
 		var attendee = Attendees.findOne({meetingId: meetingId, userId: user._id});
 
 		if (!user)
-      		throw new Meteor.Error(401, "You need to login to make comments");
+      		throw new Meteor.Error(401, "You need to login to join a meeting");
       	if (!meeting)
       		throw new Meteor.Error(404, "This meeting is no longer available");
       	if (!meeting.active || !meeting.open)
@@ -31,6 +36,20 @@ Meteor.methods({
     	return attendee._id;
 	},
 	leaveMeeting: function(meetingId) {
+    var user = Meteor.user();
+    var meeting = Meetings.findOne({_id: meetingId});
+    var attendee = Attendees.findOne({meetingId: meetingId, userId: user._id})
 
+    if (!user)
+          throw new Meteor.Error(401, "You need to login to leave this meeting");
+    if (!meeting)
+          throw new Meteor.Error(404, "This meeting is no longer available");
+    if (!meeting.active || !meeting.open)
+          throw new Meteor.Error(422, "This meeting is not accepting new members");
+    if (!attendee)
+      throw new Meteor.Error(422, "You are already not attending this meeting");
+
+    Meetings.update(meeting._id, {$inc: {attendeeCount: -1}});
+    Attendees.remove(attendee._id);
 	}
 });

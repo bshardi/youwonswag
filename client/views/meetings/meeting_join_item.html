@@ -5,7 +5,11 @@
 			<p>
 				Attendees: {{attendeeCount}}
 			</p>
+			{{#if hasJoinedMeeting}}
 			<a href="#" class="join-meeting btn btn-mini">Join Meeting</a>
+			{{else}}
+			<a href="#" class="leave-meeting btn btn-mini">Leave Meeting</a>
+			{{/if}}
 		</div>
 	</div>
 </template>
