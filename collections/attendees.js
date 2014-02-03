@@ -1,10 +1,5 @@
 Attendees = new Meteor.Collection("attendees");
 
-Attendees.allow({
-  update: ownsDocument,
-  remove: ownsDocument
-});
-
 Meteor.methods({
 	joinMeeting: function(meetingId) {
 		var user = Meteor.user();
@@ -27,6 +22,7 @@ Meteor.methods({
       		userId: user._id,
       		userName: user.username,
       		userEmail: user.emails[0].address,
+          winner: false,
       		submitted: new Date().getTime()
     	};
 
@@ -51,5 +47,22 @@ Meteor.methods({
 
     Meetings.update(meeting._id, {$inc: {attendeeCount: -1}});
     Attendees.remove(attendee._id);
-	}
+	},
+  removeAttendee: function(meetingId,attendeeId) {
+    var user = Meteor.user();
+    var meeting = Meetings.findOne(meetingId);
+    var attendee = Attendees.findOne(attendeeId);
+    
+    if (!user)
+          throw new Meteor.Error(401, "You need to login to remove this attendee");
+    if (!meeting)
+          throw new Meteor.Error(404, "This meeting is no longer available");
+    if (!meeting.active)
+          throw new Meteor.Error(422, "Archived meetings cannot be edited");
+    if (!attendee)
+      throw new Meteor.Error(422, "This attendee has already left this meeting");
+
+    Meetings.update(meeting._id, {$inc: {attendeeCount: -1}});
+    Attendees.remove(attendeeId);
+  }
 });

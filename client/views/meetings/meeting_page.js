@@ -6,3 +6,13 @@ Template.meetingPage.helpers({
 		return Attendees.find();
 	}
 });
+
+Template.meetingPage.events({
+	"click .remove-attendee": function(e){
+		e.preventDefault();
+		if (confirm("Do you want to remove this attendee?")){
+			Meteor.call("removeAttendee", this.meetingId, this._id);
+		}
+	}
+
+});

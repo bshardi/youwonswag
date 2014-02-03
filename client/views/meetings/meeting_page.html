@@ -8,8 +8,9 @@
 	</div>
 	<div class="attendees">
 		{{#each attendees}}
-		<div class="attendee">
-			{{userName}} {{userEmail}}
+		<div class="attendee span5">
+			<strong>{{userName}}</strong> {{userEmail}}
+			<button type="button" class="remove-attendee close">x</button>
 		</div>
 		{{/each}}
 	</div>

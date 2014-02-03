@@ -34,3 +34,14 @@ html,body {
 	margin-top: 15px;	
 }
 
+.attendee{
+	border-radius: 8px;
+	background: lightgrey;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	padding: 10px;
+	margin-top: 8px;	
+}
+
+.winner{
+	background: darkseagreen;
+}
