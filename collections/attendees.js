@@ -52,7 +52,7 @@ Meteor.methods({
     var user = Meteor.user();
     var meeting = Meetings.findOne(meetingId);
     var attendee = Attendees.findOne(attendeeId);
-    
+
     if (!user)
           throw new Meteor.Error(401, "You need to login to remove this attendee");
     if (!meeting)
@@ -64,5 +64,22 @@ Meteor.methods({
 
     Meetings.update(meeting._id, {$inc: {attendeeCount: -1}});
     Attendees.remove(attendeeId);
+  },
+  selectWinner: function(meetingId){
+    var user = Meteor.user();
+    var meeting = Meetings.findOne(meetingId);
+    var attendees = Attendees.find({meetingId: meetingId, winner: false}).fetch();
+    var winnerId;
+
+    if (!user)
+          throw new Meteor.Error(401, "You need to login to pick a winner");
+    if (!meeting)
+          throw new Meteor.Error(404, "This meeting is no longer available");
+    if (!meeting.active)
+          throw new Meteor.Error(422, "Archived meetings cannot be edited");
+    if (!attendees || attendees.length == 0)
+      throw new Meteor.Error(422, "There are no attendees to pick from");
+    
+    Attendees.update(attendees[Math.floor(Math.random()*attendees.length)]._id, {$set: {winner: true}});
   }
 });

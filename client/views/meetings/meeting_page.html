@@ -1,14 +1,16 @@
 <template name="meetingPage">
+    {{> errors}}
 	<div class="meeting">
 		<div class="meeting-content">
 			<h4>{{name}} <small>{{meetingCode}}</small></h4>
 			<span class="span2"> Attendees: {{attendeeCount}}</span>
 			<a href="#" class="open-meeting btn btn-mini">{{openMeetingText}}</a>
+			<button type="button" class="btn btn-mini pick-winner">Pick a Winner</button>
 		</div>
 	</div>
 	<div class="attendees">
 		{{#each attendees}}
-		<div class="attendee span5">
+		<div class="attendee span5 {{winnerClass}}">
 			<strong>{{userName}}</strong> {{userEmail}}
 			<button type="button" class="remove-attendee close">x</button>
 		</div>
