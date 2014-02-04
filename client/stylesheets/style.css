@@ -45,3 +45,7 @@ html,body {
 .winner{
 	background: darkseagreen;
 }
+
+.pick-winner-btn, .pick-winner-btn:hover{
+	background: darkseagreen;
+}

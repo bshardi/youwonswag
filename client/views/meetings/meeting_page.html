@@ -2,10 +2,31 @@
     {{> errors}}
 	<div class="meeting">
 		<div class="meeting-content">
+			<div class="btn-group pull-right">
+				<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+					Tools
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#" class="open-meeting">{{openMeetingText}}</a>
+					</li>
+					<li>
+						<a href="#" class="archive-meeting disabled">Archive meeting</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="#" class="edit-meeting">Edit</a>
+					</li>
+					<li>
+						<a href="#" class="delete-meeting">Delete</a>
+					</li>
+				</ul>
+			</div>
 			<h4>{{name}} <small>{{meetingCode}}</small></h4>
+			<span class="span2">{{meetingStatus}}</span>
 			<span class="span2"> Attendees: {{attendeeCount}}</span>
-			<a href="#" class="open-meeting btn btn-mini">{{openMeetingText}}</a>
-			<button type="button" class="btn btn-mini pick-winner">Pick a Winner</button>
+			<button type="button" class="btn btn-large pick-winner-btn">Pick a Winner</button>
 		</div>
 	</div>
 	<div class="attendees">
