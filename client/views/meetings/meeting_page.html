@@ -12,7 +12,7 @@
 						<a href="#" class="open-meeting">{{openMeetingText}}</a>
 					</li>
 					<li>
-						<a href="#" class="archive-meeting disabled">Archive meeting</a>
+						<a href="#" class="archive-meeting">{{activeMeetingText}}</a>
 					</li>
 					<li class="divider"></li>
 					<li>
@@ -23,8 +23,9 @@
 					</li>
 				</ul>
 			</div>
+			<span style="color: red">{{meetingActiveStatus}}</span>
 			<h4>{{name}} <small>{{meetingCode}}</small></h4>
-			<span class="span2">{{meetingStatus}}</span>
+			<span class="span2">{{meetingOpenStatus}}</span>
 			<span class="span2"> Attendees: {{attendeeCount}}</span>
 			<button type="button" class="btn btn-large pick-winner-btn">Pick a Winner</button>
 		</div>
