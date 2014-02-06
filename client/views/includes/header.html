@@ -14,6 +14,9 @@
             {{#if currentUser}}
             <li><a href="{{pathFor 'meetingsList'}}">Meetings</a></li>
             <li><a href="{{pathFor 'meetingsJoin'}}">Join Meeting</a></li>
+            <li class="dropdown">
+              {{> notifications}}
+            </li>
             {{/if}}
           </ul>
           <ul class="nav pull-right">

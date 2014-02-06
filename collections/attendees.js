@@ -69,7 +69,7 @@ Meteor.methods({
     var user = Meteor.user();
     var meeting = Meetings.findOne(meetingId);
     var attendees = Attendees.find({meetingId: meetingId, winner: false}).fetch();
-    var winnerId;
+    var winnerAttendee;
 
     if (!user)
           throw new Meteor.Error(401, "You need to login to pick a winner");
@@ -80,6 +80,8 @@ Meteor.methods({
     if (!attendees || attendees.length == 0)
       throw new Meteor.Error(422, "There are no attendees to pick from");
     
-    Attendees.update(attendees[Math.floor(Math.random()*attendees.length)]._id, {$set: {winner: true}});
+    var winnerAttendee = attendees[Math.floor(Math.random()*attendees.length)];
+    Attendees.update(winnerAttendee._id, {$set: {winner: true}});
+    createWinnerNotification(winnerAttendee);
   }
 });

@@ -11,7 +11,6 @@ Template.meetingJoinItem.events({
 	},
 	"click .leave-meeting": function(e){
 		e.preventDefault();
-		if (confirm("Leave this meeting?")) {
-    		Meteor.call("leaveMeeting", this._id);}
-	}
+   		Meteor.call("leaveMeeting", this._id);
+   	}
 });

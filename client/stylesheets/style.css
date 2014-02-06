@@ -72,3 +72,12 @@ html,body {
 .pick-winner-btn, .pick-winner-btn:hover{
 	background: darkseagreen;
 }
+
+.dropdown-menu span {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    line-height: 20px;
+    color: #bbb;
+    white-space: nowrap;
+}
