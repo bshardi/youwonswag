@@ -47,5 +47,13 @@ Template.meetingPage.events({
 		Meteor.call("toggleMeetingActive", this._id, this.active, function(error, id) {
 			if (error) throwError(error.reason);
 		});
+	},
+	"click .delete-meeting": function(e){
+		e.preventDefault();
+		if (confirm("Delete this meeting?")){
+			var currentMeetingId = this._id;
+			Meetings.remove(currentMeetingId);
+			Router.go("meetingsList");
+		}
 	}
 });

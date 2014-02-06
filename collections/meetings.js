@@ -49,6 +49,31 @@ Meteor.methods({
 
     return meetingId;
   },
+  editMeeting: function(meetingId, meetingFields) {
+    var user = Meteor.user(),
+      meetingWithSameCode = Meetings.findOne({meetingCode: meetingFields.meetingCode, _id: {$ne: meetingId}});
+
+    // ensure the user is logged in
+    if (!user)
+      throw new Meteor.Error(401, "You need to login to edit a meeting");
+
+    // ensure the meeting has a name
+    if (!meetingFields.name)
+      throw new Meteor.Error(422, "Please fill in a name for your meeting");
+
+    if(!meetingFields.meetingCode)
+      throw new Meteor.Error(422, "Your meeting needs a code.")
+
+    // check that there are no previous posts with the same link
+    if (meetingFields.meetingCode && meetingWithSameCode) {
+      throw new Meteor.Error(302, 
+        "This meeting code is already in use, please pick another.", 
+        meetingWithSameCode._id);
+    }
+
+    Meetings.update(meetingId, {$set: meetingFields});
+
+  },
   toggleMeetingOpen: function(meetingId, currentState){
     var user = Meteor.user();
     //ensure the user is logged in
