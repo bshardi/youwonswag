@@ -26,6 +26,29 @@ html,body {
 	margin: 20px 0;
 }
 
+.home-main{
+	border-radius: 8px;
+	background: whitesmoke;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	padding: 10px;
+	min-height: 200px;
+}
+
+.home-instructions{
+	border-radius: 8px;
+	background: whitesmoke;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	padding: 10px;
+	min-height: 200px;
+}
+
+.about{
+	border-radius: 8px;
+	background: whitesmoke;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+	padding: 10px;
+}
+
 .meeting{
 	border-radius: 8px;
 	background: whitesmoke;
