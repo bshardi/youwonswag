@@ -7,6 +7,8 @@ Template.editMeeting.events({
     var meetingFields = {
       name: $(e.target).find("[name=name]").val(),
       meetingCode: $(e.target).find("[name=meetingCode]").val().toLowerCase(),
+      instructions: $(e.target).find("[name=instructions]").val(),
+      location: $(e.target).find("[name=location]").val(),
     }
 
     Meteor.call("editMeeting", currentMeetingId, meetingFields, function(error, id) {

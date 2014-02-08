@@ -7,8 +7,8 @@ Meetings.allow({
 
 Meetings.deny({
   update: function(userId, meeting, fieldNames) {
-    //may only edit the following two fields:
-    return (_.without(fieldNames, "name", "meetingCode").lenght > 0);
+    //may only edit the following fields:
+    return (_.without(fieldNames, "name", "meetingCode", "instructions", "location").lenght > 0);
   }
 });
 
@@ -36,7 +36,7 @@ Meteor.methods({
     }
 
     // pick out the whitelisted keys
-    var meeting = _.extend(_.pick(meetingAttributes, "name", "meetingCode"), {
+    var meeting = _.extend(_.pick(meetingAttributes, "name", "meetingCode", "instructions", "location"), {
       userId: user._id, 
       owner: user.username, 
       submitted: new Date().getTime(),

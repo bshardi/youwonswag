@@ -5,6 +5,8 @@ Template.createMeeting.events({
     var meeting = {
       name: $(e.target).find("[name=name]").val(),
       meetingCode: $(e.target).find("[name=meetingCode]").val().toLowerCase(),
+      instructions: $(e.target).find("[name=instructions]").val(),
+      location: $(e.target).find("[name=location]").val(),
     }
 
     Meteor.call("createMeeting", meeting, function(error, id) {
