@@ -9,13 +9,12 @@ Template.notifications.helpers({
 
 Template.notification.helpers({
   notificationMeetingPath: function() {
-    return Router.routes.meetingPage.path({_id: this.meetingId});
+    return Router.routes.meetingPublicView.path({meetingCode: this.meetingCode});
   }
 })
 
 Template.notification.events({
   'click a': function(e) {
-    e.preventDefault();
     Notifications.update(this._id, {$set: {read: true}});
   }
 })
